@@ -1,12 +1,10 @@
 public class Main {
     public static void main(String[] args) {
-        Validator validator = new Validator();
-        boolean result = Validator.validate("teSt_1234", "D_43tfre43_9", "D_94jfgt432d_8");
+        boolean result = Validator.validate("12345678911234567892", "D_43tfre43_9", "D_43tfre43_9");
         if (result) {
             System.out.println("Логин и пароль введен правельно");
         } else {
             System.out.println("Логин введен правильно");
         }
     }
-}
 }
