@@ -29,7 +29,15 @@ public class Validator {
         if (!password.equals(confirmPassword)) {
             throw new WrongPasswordException("Пароли не совпадают");
         }
-        Checker checker = ThreadLocalRandom.current().nextBoolean() ? new LoopChecker() : new RegexChecker();
+        Checker checker = ThreadLocalRandom.current().nextBoolean() ?
+                new LoopChecker() :
+                new RegexChecker();
 
+        if (!checker.isValid(login)) {
+            throw new WrongLoginException("Логин содержит не корректные символы");
+        }
+        if (!checker.isValid(login)) {
+            throw new WrongPasswordException("Пароль содержит не корректные символы");
+        }
     }
 }
