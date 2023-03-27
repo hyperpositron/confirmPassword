@@ -1,6 +1,5 @@
 import java.util.Objects;
-
-import static jdk.internal.loader.URLClassPath.check;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Validator {
 
@@ -19,8 +18,6 @@ public class Validator {
     }
 
 
-
-
     private static void check(String login, String password, String confirmPassword)
             throws WrongLoginException, WrongPasswordException {
         if (Objects.isNull(login) || login.length() > 20) {
@@ -32,5 +29,7 @@ public class Validator {
         if (!password.equals(confirmPassword)) {
             throw new WrongPasswordException("Пароли не совпадают");
         }
+        Checker checker = ThreadLocalRandom.current().nextBoolean() ? new LoopChecker() : new RegexChecker();
+
     }
 }
